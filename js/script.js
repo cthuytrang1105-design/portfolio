@@ -1,559 +1,224 @@
-/* ==========================================
-   MENU MOBILE
-========================================== */
+document.addEventListener("DOMContentLoaded", function () {
 
-const menuBtn =
-    document.getElementById("menuBtn");
-
-const navbar =
-    document.getElementById("navbar");
-
-
-menuBtn.addEventListener(
-    "click",
-    function () {
-
-        navbar.classList.toggle("open");
-
-        if (
-            navbar.classList.contains("open")
-        ) {
-
-            menuBtn.textContent = "✕";
-
-        } else {
-
-            menuBtn.textContent = "☰";
-
-        }
-
-    }
-);
-
-
-/* Đóng menu khi chọn mục */
-
-document
-    .querySelectorAll(".navbar a")
-    .forEach(function (link) {
-
-        link.addEventListener(
-            "click",
-            function () {
-
-                navbar.classList.remove("open");
-
-                menuBtn.textContent = "☰";
-
-            }
-        );
-
+    /* ===== HIỆN TOÀN BỘ NỘI DUNG ===== */
+    document.querySelectorAll(".reveal").forEach(function (item) {
+        item.classList.add("show");
     });
 
 
-/* ==========================================
-   DARK / LIGHT MODE
-========================================== */
+    /* ===== MENU MOBILE ===== */
+    const menuBtn = document.getElementById("menuBtn");
+    const navbar = document.getElementById("navbar");
 
-const themeBtn =
-    document.getElementById("themeBtn");
+    if (menuBtn && navbar) {
+        menuBtn.addEventListener("click", function () {
+            navbar.classList.toggle("open");
+            menuBtn.textContent =
+                navbar.classList.contains("open") ? "✕" : "☰";
+        });
 
-
-const savedTheme =
-    localStorage.getItem("portfolio-theme");
-
-
-if (savedTheme === "light") {
-
-    document.body.classList.add(
-        "light-mode"
-    );
-
-    themeBtn.textContent = "☀";
-
-}
+        document.querySelectorAll(".navbar a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navbar.classList.remove("open");
+                menuBtn.textContent = "☰";
+            });
+        });
+    }
 
 
-themeBtn.addEventListener(
-    "click",
-    function () {
+    /* ===== DARK / LIGHT MODE ===== */
+    const themeBtn = document.getElementById("themeBtn");
 
-        document.body.classList.toggle(
-            "light-mode"
-        );
+    if (themeBtn) {
+        const savedTheme = localStorage.getItem("portfolio-theme");
 
-
-        if (
-            document.body.classList.contains(
-                "light-mode"
-            )
-        ) {
-
+        if (savedTheme === "light") {
+            document.body.classList.add("light-mode");
             themeBtn.textContent = "☀";
-
-            localStorage.setItem(
-                "portfolio-theme",
-                "light"
-            );
-
-        } else {
-
-            themeBtn.textContent = "☾";
-
-            localStorage.setItem(
-                "portfolio-theme",
-                "dark"
-            );
-
         }
 
-    }
-);
+        themeBtn.addEventListener("click", function () {
+            document.body.classList.toggle("light-mode");
 
-
-/* ==========================================
-   TYPING EFFECT
-========================================== */
-
-const typing =
-    document.getElementById("typing");
-
-
-const words = [
-
-    "sinh viên Sư phạm Tin học",
-
-    "người yêu thích công nghệ",
-
-    "người thích thiết kế Web",
-
-    "một người luôn học hỏi"
-
-];
-
-
-let wordIndex = 0;
-
-let characterIndex = 0;
-
-let deleting = false;
-
-
-function typingEffect() {
-
-    const currentWord =
-        words[wordIndex];
-
-
-    if (!deleting) {
-
-        typing.textContent =
-            currentWord.substring(
-                0,
-                characterIndex + 1
-            );
-
-        characterIndex++;
-
-
-        if (
-            characterIndex ===
-            currentWord.length
-        ) {
-
-            deleting = true;
-
-            setTimeout(
-                typingEffect,
-                1500
-            );
-
-            return;
-
-        }
-
-    } else {
-
-        typing.textContent =
-            currentWord.substring(
-                0,
-                characterIndex - 1
-            );
-
-        characterIndex--;
-
-
-        if (characterIndex === 0) {
-
-            deleting = false;
-
-            wordIndex =
-                (wordIndex + 1) %
-                words.length;
-
-        }
-
+            if (document.body.classList.contains("light-mode")) {
+                themeBtn.textContent = "☀";
+                localStorage.setItem("portfolio-theme", "light");
+            } else {
+                themeBtn.textContent = "☾";
+                localStorage.setItem("portfolio-theme", "dark");
+            }
+        });
     }
 
 
-    setTimeout(
-        typingEffect,
-        deleting ? 35 : 65
-    );
+    /* ===== TYPING EFFECT ===== */
+    const typing = document.getElementById("typing");
 
-}
+    if (typing) {
+        const words = [
+            "sinh viên Sư phạm Tin học",
+            "người yêu thích công nghệ",
+            "người thích thiết kế Web",
+            "một người luôn học hỏi"
+        ];
 
+        let wordIndex = 0;
+        let characterIndex = 0;
+        let deleting = false;
 
-typingEffect();
+        function typingEffect() {
+            const currentWord = words[wordIndex];
 
+            if (!deleting) {
+                typing.textContent =
+                    currentWord.substring(0, characterIndex + 1);
 
-/* ==========================================
-   HEADER SCROLL
-========================================== */
+                characterIndex++;
 
-const header =
-    document.querySelector(".header");
+                if (characterIndex === currentWord.length) {
+                    deleting = true;
+                    setTimeout(typingEffect, 1500);
+                    return;
+                }
+            } else {
+                typing.textContent =
+                    currentWord.substring(0, characterIndex - 1);
 
+                characterIndex--;
 
-window.addEventListener(
-    "scroll",
-    function () {
+                if (characterIndex === 0) {
+                    deleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+            }
 
-        if (window.scrollY > 30) {
-
-            header.classList.add(
-                "scrolled"
-            );
-
-        } else {
-
-            header.classList.remove(
-                "scrolled"
-            );
-
+            setTimeout(typingEffect, deleting ? 35 : 65);
         }
 
+        typingEffect();
     }
-);
 
 
-/* ==========================================
-   ACTIVE NAVIGATION
-========================================== */
+    /* ===== HEADER SCROLL ===== */
+    const header = document.querySelector(".header");
 
-const sections =
-    document.querySelectorAll(
-        "section[id]"
-    );
-
-
-const navLinks =
-    document.querySelectorAll(
-        ".navbar a"
-    );
+    if (header) {
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 30) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        });
+    }
 
 
-function updateNavigation() {
+    /* ===== ACTIVE MENU ===== */
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".navbar a");
 
-    let currentSection = "home";
+    function updateNavigation() {
+        let currentSection = "home";
 
-
-    sections.forEach(
-        function (section) {
-
-            const top =
-                section.offsetTop - 170;
-
-            const bottom =
-                top +
-                section.offsetHeight;
-
+        sections.forEach(function (section) {
+            const top = section.offsetTop - 170;
+            const bottom = top + section.offsetHeight;
 
             if (
                 window.scrollY >= top &&
                 window.scrollY < bottom
             ) {
-
-                currentSection =
-                    section.getAttribute("id");
-
+                currentSection = section.getAttribute("id");
             }
+        });
 
-        }
-    );
-
-
-    navLinks.forEach(
-        function (link) {
-
-            link.classList.remove(
-                "active"
-            );
-
+        navLinks.forEach(function (link) {
+            link.classList.remove("active");
 
             if (
                 link.getAttribute("href") ===
                 "#" + currentSection
             ) {
-
-                link.classList.add(
-                    "active"
-                );
-
+                link.classList.add("active");
             }
-
-        }
-    );
-
-}
-
-
-window.addEventListener(
-    "scroll",
-    updateNavigation
-);
-
-
-/* ==========================================
-   SCROLL REVEAL
-========================================== */
-
-const revealItems =
-    document.querySelectorAll(
-        ".reveal"
-    );
-
-
-const revealObserver =
-    new IntersectionObserver(
-
-        function (entries) {
-
-            entries.forEach(
-                function (entry) {
-
-                    if (
-                        entry.isIntersecting
-                    ) {
-
-                        entry.target
-                            .classList
-                            .add("show");
-
-                    }
-
-                }
-            );
-
-        },
-
-        {
-            threshold: 0.12
-        }
-
-    );
-
-
-revealItems.forEach(
-    function (item) {
-
-        revealObserver.observe(item);
-
+        });
     }
-);
+
+    window.addEventListener("scroll", updateNavigation);
+    updateNavigation();
 
 
-/* ==========================================
-   SKILL PROGRESS
-========================================== */
+    /* ===== THANH KỸ NĂNG ===== */
+    document.querySelectorAll(".progress div").forEach(function (bar) {
+        const width = bar.dataset.width;
 
-const progressBars =
-    document.querySelectorAll(
-        ".progress div"
-    );
-
-
-const progressObserver =
-    new IntersectionObserver(
-
-        function (entries) {
-
-            entries.forEach(
-                function (entry) {
-
-                    if (
-                        entry.isIntersecting
-                    ) {
-
-                        const width =
-                            entry.target
-                                .dataset
-                                .width;
-
-                        entry.target
-                            .style
-                            .width = width;
-
-                    }
-
-                }
-            );
-
-        },
-
-        {
-            threshold: 0.5
+        if (width) {
+            bar.style.width = width;
         }
-
-    );
-
-
-progressBars.forEach(
-    function (bar) {
-
-        progressObserver.observe(bar);
-
-    }
-);
+    });
 
 
-/* ==========================================
-   CONTACT FORM
-========================================== */
+    /* ===== CONTACT FORM ===== */
+    const contactForm = document.getElementById("contactForm");
+    const formMessage = document.getElementById("formMessage");
 
-const contactForm =
-    document.getElementById(
-        "contactForm"
-    );
+    if (contactForm && formMessage) {
+        contactForm.addEventListener("submit", function (event) {
+            event.preventDefault();
 
+            const nameInput = document.getElementById("name");
+            const name = nameInput ? nameInput.value.trim() : "";
 
-const formMessage =
-    document.getElementById(
-        "formMessage"
-    );
+            formMessage.textContent =
+                "Cảm ơn " + name +
+                "! Mình đã nhận được lời nhắn của bạn ✓";
 
+            contactForm.reset();
 
-contactForm.addEventListener(
-    "submit",
-    function (event) {
-
-        event.preventDefault();
-
-
-        const name =
-            document
-                .getElementById("name")
-                .value
-                .trim();
-
-
-        formMessage.textContent =
-            "Cảm ơn " +
-            name +
-            "! Mình đã nhận được lời nhắn của bạn ✓";
-
-
-        contactForm.reset();
-
-
-        setTimeout(
-            function () {
-
+            setTimeout(function () {
                 formMessage.textContent = "";
-
-            },
-            5000
-        );
-
+            }, 5000);
+        });
     }
-);
 
 
-/* ==========================================
-   FOOTER YEAR
-========================================== */
+    /* ===== FOOTER YEAR ===== */
+    const year = document.getElementById("year");
 
-document
-    .getElementById("year")
-    .textContent =
-    new Date().getFullYear();
+    if (year) {
+        year.textContent = new Date().getFullYear();
+    }
 
 
-/* ==========================================
-   PROFILE 3D EFFECT
-========================================== */
+    /* ===== PROFILE 3D ===== */
+    const profileCard = document.querySelector(".profile-card");
 
-const profileCard =
-    document.querySelector(
-        ".profile-card"
-    );
+    if (profileCard && window.innerWidth > 900) {
 
+        profileCard.addEventListener("mousemove", function (event) {
+            const rect = profileCard.getBoundingClientRect();
 
-if (
-    profileCard &&
-    window.innerWidth > 900
-) {
+            const mouseX = event.clientX - rect.left;
+            const mouseY = event.clientY - rect.top;
 
-    profileCard.addEventListener(
-        "mousemove",
-        function (event) {
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
 
-            const rect =
-                profileCard
-                    .getBoundingClientRect();
-
-
-            const mouseX =
-                event.clientX -
-                rect.left;
-
-
-            const mouseY =
-                event.clientY -
-                rect.top;
-
-
-            const centerX =
-                rect.width / 2;
-
-
-            const centerY =
-                rect.height / 2;
-
-
-            const rotateY =
-                (mouseX - centerX) / 35;
-
-
-            const rotateX =
-                (centerY - mouseY) / 35;
-
+            const rotateY = (mouseX - centerX) / 35;
+            const rotateX = (centerY - mouseY) / 35;
 
             profileCard.style.transform =
-                "perspective(1000px)" +
-                " rotateX(" +
-                rotateX +
-                "deg)" +
-                " rotateY(" +
-                rotateY +
-                "deg)" +
-                " translateY(-5px)";
+                "perspective(1000px) " +
+                "rotateX(" + rotateX + "deg) " +
+                "rotateY(" + rotateY + "deg) " +
+                "translateY(-5px)";
+        });
 
-        }
-    );
-
-
-    profileCard.addEventListener(
-        "mouseleave",
-        function () {
-
+        profileCard.addEventListener("mouseleave", function () {
             profileCard.style.transform =
-                "perspective(1000px)" +
-                " rotateX(0deg)" +
-                " rotateY(0deg)" +
-                " translateY(0)";
+                "perspective(1000px) " +
+                "rotateX(0deg) rotateY(0deg) translateY(0)";
+        });
+    }
 
-        }
-    );
-
-}
+});
