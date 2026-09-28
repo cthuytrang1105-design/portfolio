@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Chu Thuỳ Trang | Portfolio</title>
 
-    <!-- CSS nằm ngoài thư mục js -->
-    <link rel="stylesheet" href="../css/style.css">
+    <!-- CSS đang nằm cùng thư mục với index.html -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -15,7 +16,8 @@
 <!-- ================= HEADER ================= -->
 
 <header class="header">
-<a href="#home" class="logo">
+
+    <a href="#home" class="logo">
         <span>&lt;/&gt;</span> TRANG
     </a>
 
@@ -29,11 +31,15 @@
 
     <div class="header-right">
 
-        <button id="themeBtn" class="theme-btn" aria-label="Đổi giao diện">
+        <button id="themeBtn"
+                class="theme-btn"
+                aria-label="Đổi giao diện">
             ☾
         </button>
 
-        <button id="menuBtn" class="menu-btn" aria-label="Mở menu">
+        <button id="menuBtn"
+                class="menu-btn"
+                aria-label="Mở menu">
             ☰
         </button>
 
@@ -97,17 +103,11 @@
 
         <div class="social-list">
 
-            <a href="#" title="Facebook">
-                f
-            </a>
+            <a href="#" title="Facebook">f</a>
 
-            <a href="#" title="Github">
-                GH
-            </a>
+            <a href="#" title="Github">GH</a>
 
-            <a href="#" title="Email">
-                @
-            </a>
+            <a href="#" title="Email">@</a>
 
         </div>
 
@@ -117,9 +117,6 @@
     <!-- PROFILE -->
 
     <div class="profile-area reveal">
-
-       
-
 
         <div class="profile-card">
 
@@ -138,10 +135,9 @@
 
             <div class="avatar-box">
 
-                <img
-                    src="../images/avatar.png"
-                    alt="Ảnh đại diện Chu Thuỳ Trang"
-                >
+                <!-- ĐÃ SỬA ẢNH -->
+                <img src="avatar.png"
+                     alt="Ảnh đại diện Chu Thuỳ Trang">
 
                 <div class="avatar-overlay"></div>
 
@@ -164,7 +160,6 @@
                 <p class="profile-major">
                     Sinh viên Sư phạm Tin học
                 </p>
-
 
                 <div class="profile-tags">
                     <span>#Coding</span>
@@ -191,6 +186,7 @@
     </div>
 
 </section>
+
 
 
 <!-- ================= ABOUT ================= -->
@@ -300,6 +296,7 @@
     </div>
 
 </section>
+
 
 
 <!-- ================= SKILLS ================= -->
@@ -488,7 +485,8 @@
 </section>
 
 
-<!-- ================= PROJECT ================= -->
+
+<!-- ================= PROJECTS ================= -->
 
 <section class="section projects-section" id="projects">
 
@@ -519,18 +517,15 @@
 
             <div class="project-image">
 
-                <img
-                    src="../images/websitecanhan.png"
-                    alt="Website cá nhân"
-                >
+                <!-- ĐÃ SỬA -->
+                <img src="websitecanhan.png"
+                     alt="Website cá nhân">
 
                 <div class="project-overlay">
 
                     <span>PROJECT 01</span>
 
-                    <a href="#">
-                        ↗
-                    </a>
+                    <a href="#">↗</a>
 
                 </div>
 
@@ -568,18 +563,15 @@
 
             <div class="project-image">
 
-                <img
-                    src="../images/ungdungpython.jpg"
-                    alt="Ứng dụng Python"
-                >
+                <!-- ĐÃ SỬA -->
+                <img src="ungdungpython.jpg"
+                     alt="Ứng dụng Python">
 
                 <div class="project-overlay">
 
                     <span>PROJECT 02</span>
 
-                    <a href="#">
-                        ↗
-                    </a>
+                    <a href="#">↗</a>
 
                 </div>
 
@@ -616,18 +608,15 @@
 
             <div class="project-image">
 
-                <img
-                    src="../images/webcosodulieu.jpg"
-                    alt="Website cơ sở dữ liệu"
-                >
+                <!-- ĐÃ SỬA -->
+                <img src="webcosodulieu.jpg"
+                     alt="Website cơ sở dữ liệu">
 
                 <div class="project-overlay">
 
                     <span>PROJECT 03</span>
 
-                    <a href="#">
-                        ↗
-                    </a>
+                    <a href="#">↗</a>
 
                 </div>
 
@@ -683,7 +672,9 @@
         </p>
 
     </div>
-   <div class="contact-grid">
+
+
+    <div class="contact-grid">
 
         <div class="contact-left reveal">
 
@@ -696,11 +687,13 @@
                 điều gì đó
                 <span>thú vị.</span>
             </h3>
+
             <p class="contact-description">
                 Mình luôn sẵn sàng trao đổi về học tập,
                 công nghệ, lập trình, giáo dục hoặc
                 những ý tưởng mới.
             </p>
+
 
             <div class="contact-item">
 
@@ -712,6 +705,7 @@
                 </div>
 
             </div>
+
 
             <div class="contact-item">
 
@@ -726,7 +720,9 @@
 
         </div>
 
-        <form class="contact-form reveal" id="contactForm">
+
+        <form class="contact-form reveal"
+              id="contactForm">
 
             <div class="form-group">
 
@@ -792,9 +788,12 @@
             </div>
 
 
-            <button type="submit" class="send-btn">
+            <button type="submit"
+                    class="send-btn">
+
                 Gửi lời nhắn
                 <span>→</span>
+
             </button>
 
             <p id="formMessage"></p>
@@ -806,6 +805,7 @@
 </section>
 
 </main>
+
 
 
 <!-- ================= FOOTER ================= -->
@@ -829,8 +829,8 @@
 </footer>
 
 
-<!-- index.html và script.js cùng thư mục -->
-<script src="script.js"></script>
+<!-- script.js nằm trong thư mục js -->
+<script src="js/script.js"></script>
 
 </body>
 </html>
